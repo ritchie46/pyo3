@@ -51,9 +51,9 @@ pub fn cargo_env_var(var: &str) -> Option<String> {
 /// Gets an external environment variable, and registers the build script to rerun if
 /// the variable changes.
 pub fn env_var(var: &str) -> Option<OsString> {
-    if cfg!(feature = "resolve-config") {
-        println!("cargo:rerun-if-env-changed={}", var);
-    }
+    //if cfg!(feature = "resolve-config") {
+    //    println!("cargo:rerun-if-env-changed={}", var);
+    //}
     env::var_os(var)
 }
 
@@ -1711,7 +1711,7 @@ pub fn find_interpreter() -> Result<PathBuf> {
     } else if let Some(env_interpreter) = get_env_interpreter() {
         Ok(env_interpreter)
     } else {
-        println!("cargo:rerun-if-env-changed=PATH");
+        //println!("cargo:rerun-if-env-changed=PATH");
         ["python", "python3"]
             .iter()
             .find(|bin| {
