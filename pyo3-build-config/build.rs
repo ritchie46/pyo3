@@ -33,7 +33,7 @@ fn configure(interpreter_config: Option<InterpreterConfig>, name: &str) -> Resul
 fn config_file() -> Result<Option<InterpreterConfig>> {
     if let Some(path) = env_var("PYO3_CONFIG_FILE") {
         let path = Path::new(&path);
-        println!("cargo:rerun-if-changed={}", path.display());
+        //println!("cargo:rerun-if-changed={}", path.display());
         // Absolute path is necessary because this build script is run with a cwd different to the
         // original `cargo build` instruction.
         ensure!(
@@ -63,12 +63,12 @@ fn generate_build_configs() -> Result<()> {
 }
 
 fn main() {
-    //if std::env::var("CARGO_FEATURE_RESOLVE_CONFIG").is_ok() {
-    //    if let Err(e) = generate_build_configs() {
-    //        eprintln!("error: {}", e.report());
-    //        std::process::exit(1)
-    //    }
-    //} else {
-    //    eprintln!("resolve-config feature not enabled; build script in no-op mode");
-    //}
+    if std::env::var("CARGO_FEATURE_RESOLVE_CONFIG").is_ok() {
+        if let Err(e) = generate_build_configs() {
+            eprintln!("error: {}", e.report());
+            std::process::exit(1)
+        }
+    } else {
+        eprintln!("resolve-config feature not enabled; build script in no-op mode");
+    }
 }
