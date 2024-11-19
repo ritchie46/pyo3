@@ -63,12 +63,12 @@ fn generate_build_configs() -> Result<()> {
 }
 
 fn main() {
-    if std::env::var("CARGO_FEATURE_RESOLVE_CONFIG").is_ok() {
-        if let Err(e) = generate_build_configs() {
-            eprintln!("error: {}", e.report());
-            std::process::exit(1)
-        }
-    } else {
-        eprintln!("resolve-config feature not enabled; build script in no-op mode");
-    }
+    //if std::env::var("CARGO_FEATURE_RESOLVE_CONFIG").is_ok() {
+    //    if let Err(e) = generate_build_configs() {
+    //        eprintln!("error: {}", e.report());
+    //        std::process::exit(1)
+    //    }
+    //} else {
+    //    eprintln!("resolve-config feature not enabled; build script in no-op mode");
+    //}
 }
